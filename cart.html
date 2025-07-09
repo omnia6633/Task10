@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 70px; 
+            background-color: #f0f2f5;
+        }
+        .navbar {
+            background-color: #0d6efd !important; 
+        }
+        .navbar-brand, .nav-link, .logout-btn {
+            color: #fff !important;
+            font-weight: bold;
+        }
+        .nav-link.active {
+            text-decoration: underline;
+        }
+        .cart-item-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            padding: 15px;
+        }
+        .cart-item-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+        .cart-item-card .item-details {
+            flex-grow: 1;
+        }
+        .cart-item-card .item-details h5 {
+            color: #0d6efd;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .cart-item-card .item-details p {
+            color: #555;
+            margin-bottom: 0;
+        }
+        .cart-item-card .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+        .cart-item-card .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+        .total-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: right;
+            margin-top: 30px;
+        }
+        .total-section h4 {
+            color: #0d6efd;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .confirm-btn {
+            background-color: #007bff; 
+            border-color: #007bff;
+            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+        }
+        .confirm-btn:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .empty-cart-message {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #777;
+            margin-top: 50px;
+        }
+        .section-title {
+            color: #0d6efd;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #333;
+            color: #eee;
+        }
+        body.dark-mode .navbar {
+            background-color: #555 !important;
+        }
+        body.dark-mode .navbar-brand, body.dark-mode .nav-link, body.dark-mode .logout-btn {
+            color: #eee !important;
+        }
+        body.dark-mode .cart-item-card, body.dark-mode .total-section {
+            background-color: #444;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+        }
+        body.dark-mode .cart-item-card .item-details h5, body.dark-mode .total-section h4 {
+            color: #0d6efd;
+        }
+        body.dark-mode .cart-item-card .item-details p {
+            color: #ccc;
+        }
+        body.dark-mode .empty-cart-message {
+            color: #bbb;
+        }
+        body.dark-mode .section-title {
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">🏥Hospital</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="cart.html">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="account.html">Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                </ul>
+                <button class="btn btn-danger logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center section-title mb-4">Selected Services</h1>
+        <div id="cartItemsContainer">
+            </div>
+        <div id="emptyCartMessage" class="empty-cart-message" style="display: none;">
+            Your cart is empty. Please add services from the <a href="services.html">Services page</a>.
+        </div>
+        <div class="total-section" id="totalSection">
+            <h4>Total: <span id="cartTotal">0</span> EGP</h4>
+            <button class="btn btn-primary confirm-btn" onclick="confirmServices()">Confirm Services</button>
+        </div>
+    </div>
+        <footer class="footer mt-auto py-4 bg-dark text-white">
+        <div class="text-center">
+            <p class="mb-0">&copy; 2025 Our Hospital. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+        const body = document.body;
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+        }
+
+        if (localStorage.getItem('loggedInUser') !== 'patient') {
+            window.location.href = 'login.html'; 
+        }
+
+        let cart = [];
+
+        function renderCart() {
+            const cartItemsContainer = document.getElementById('cartItemsContainer');
+            const cartTotalSpan = document.getElementById('cartTotal');
+            const emptyCartMessage = document.getElementById('emptyCartMessage');
+            const totalSection = document.getElementById('totalSection');
+
+            cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                emptyCartMessage.style.display = 'block';
+                totalSection.style.display = 'none';
+                cartTotalSpan.textContent = '0';
+                return;
+            } else {
+                emptyCartMessage.style.display = 'none';
+                totalSection.style.display = 'block';
+            }
+
+            cart.forEach(service => {
+                total += service.price;
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'cart-item-card';
+                cardDiv.innerHTML = `
+                    <img src="${service.image}" alt="${service.name}">
+                    <div class="item-details">
+                        <h5>${service.name}</h5>
+                        <p>${service.price} EGP</p>
+                    </div>
+                    <button class="btn btn-danger" onclick="removeFromCart(${service.id})">Remove</button>
+                `;
+                cartItemsContainer.appendChild(cardDiv);
+            });
+
+            cartTotalSpan.textContent = total;
+        }
+
+        function removeFromCart(serviceId) {
+            cart = cart.filter(service => service.id !== serviceId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart(); 
+        }
+
+        function confirmServices() {
+            if (cart.length === 0) {
+                alert('Your cart is empty. Please add services first.');
+                return;
+            }
+
+            let pendingServices = JSON.parse(localStorage.getItem('pendingServices') || '[]');
+            const confirmationTime = new Date().toLocaleString('en-US', {
+                month: 'numeric',
+                day: 'numeric',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false 
+            });
+
+            cart.forEach(service => {
+                const uniqueId = `${service.id}-${Date.now()}`;
+                pendingServices.push({ ...service, uniqueId: uniqueId, confirmationTime: confirmationTime, status: 'pending' });
+            });
+
+            localStorage.setItem('pendingServices', JSON.stringify(pendingServices));
+            localStorage.removeItem('cart'); 
+            alert('Services sent for confirmation. Check your Account page.');
+            window.location.href = 'account.html'; 
+        }
+
+        function logout() {
+            localStorage.removeItem('loggedInUser');
+            localStorage.removeItem('cart');
+            localStorage.removeItem('pendingServices'); 
+            localStorage.removeItem('confirmedServices'); 
+            window.location.href = 'login.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', renderCart);
+    </script>
+</body>
+</html>

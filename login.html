@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Login</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            position: relative; 
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .login-container h2 {
+            color: #0d6efd;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .login-container h2 span {
+            margin-right: 10px;
+            font-size: 1.5em;
+        }
+        .form-label {
+            font-weight: bold;
+            color: #555;
+            text-align: left;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-control, .form-select {
+            border-radius: 8px;
+            padding: 12px 15px;
+            border: 1px solid #ced4da;
+            transition: border-color 0.2s;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(77, 149, 207, 0.25);
+        }
+        .btn-primary {
+            background-color: #0d6efd; 
+            border-color: #0d6efd;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .btn-primary:hover {
+            background-color: #152778; 
+            border-color: #152778;
+        }
+        .alert-danger {
+            margin-top: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: none; 
+        }
+        
+        .dark-mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        body.dark-mode {
+            background-color: #333;
+            color: #eee;
+        }
+        body.dark-mode .login-container {
+            background-color: #444;
+            color: #eee;
+        }
+        body.dark-mode .login-container h2 {
+            color: #0d6efd; 
+        }
+        body.dark-mode .form-label {
+            color: #ccc;
+        }
+        body.dark-mode .form-control, body.dark-mode .form-select {
+            background-color: #555;
+            color: #eee;
+            border-color: #666;
+        }
+        body.dark-mode .form-control::placeholder {
+            color: #bbb;
+        }
+        body.dark-mode .form-control:focus, body.dark-mode .form-select:focus {
+            border-color:#0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(77, 149, 207, 0.25);
+        }
+        body.dark-mode .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+        body.dark-mode .btn-primary:hover {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+        body.dark-mode .alert-danger {
+            background-color: #b61121;
+            color: #ffe0e6;
+            border-color: #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2><span>🏥</span> Hospital Login</h2>
+        <div class="mb-3 text-start">
+            <label for="loginAs" class="form-label">Login As:</label>
+            <select class="form-select" id="loginAs">
+                <option value="patient">Patient</option>
+                <option value="doctor">Doctor</option>
+            </select>
+        </div>
+        <div class="mb-3 text-start">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter username">
+        </div>
+        <div class="mb-3 text-start">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password">
+        </div>
+        <div class="alert alert-danger" id="loginError" role="alert">
+            Invalid credentials or role.
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="handleLogin()">Login</button>
+    </div>
+
+    <button class="btn btn-dark dark-mode-toggle" id="darkModeToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-fill" viewBox="0 0 16 16">
+            <path d="M6 .278a.768.768 0 0 0-.083.328 1.838 1.838 0 0 1-.398.995 2.502 2.502 0 0 1-.761 1.155 2.478 2.478 0 0 1-1.164.739 2.502 2.502 0 0 1-.98.388 2.47 2.47 0 0 0-.256.033A.766.766 0 0 0 0 4.5V5a.5.5 0 0 0 .5.5H2a.5.5 0 0 0 .5-.5V4.5a.774.774 0 0 0-.085-.346A1.838 1.838 0 0 1 1.776 3a2.502 2.502 0 0 1 .76-.994 2.479 2.479 0 0 1 1.164-.738 2.502 2.502 0 0 1 .98-.389 2.47 2.47 0 0 0 .256-.033.766.766 0 0 0 .085-.346z"/>
+        </svg>
+    </button>
+
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+    
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+         
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+
+        
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+        }
+
+        function handleLogin() {
+            const loginAs = document.getElementById('loginAs').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const loginError = document.getElementById('loginError');
+
+            loginError.style.display = 'none'; 
+
+            if (loginAs === 'patient' && username === 'patient1' && password === '123') {
+                localStorage.setItem('loggedInUser', 'patient'); 
+                window.location.href = 'index.html'; 
+            } else if (loginAs === 'doctor' && username === 'dr john' && password === '456') {
+                localStorage.setItem('loggedInUser', 'doctor'); 
+                window.location.href = 'doctor.html'; 
+            } else {
+                loginError.style.display = 'block'; 
+            }
+        }
+    </script>
+</body>
+</html>
+</html>

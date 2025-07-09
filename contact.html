@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light grey background */
+            font-family: 'Arial', sans-serif;
+            padding-top: 70px; /* To prevent content from being hidden by fixed navbar */
+        }
+        .navbar { /* Styles for the new navbar */
+            background-color: #0d6efd !important; /* Purple navbar */
+        }
+        .navbar-brand, .nav-link, .logout-btn { /* For consistent text color in navbar */
+            color: #fff !important;
+            font-weight: bold;
+        }
+        .nav-link.active {
+            text-decoration: underline;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto 30px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #0d6efd; /* Consistent purple color */
+            font-weight: 600;
+        }
+        .contact-info {
+            max-width: 600px;
+            margin: 20px auto 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .contact-info h3 {
+            color: #0d6efd; /* Consistent purple color */
+            margin-bottom: 20px;
+        }
+        .contact-info p {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            color: #555;
+        }
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #0d6efd; /* Consistent purple color */
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #0d6efd;
+            text-decoration: underline;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #333;
+            color: #eee;
+        }
+        body.dark-mode .navbar {
+            background-color: #555 !important;
+        }
+        body.dark-mode .navbar-brand, body.dark-mode .nav-link, body.dark-mode .logout-btn {
+            color: #eee !important;
+        }
+        body.dark-mode .form-container, body.dark-mode .contact-info {
+            background-color: #444;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.1);
+        }
+        body.dark-mode .form-container h2, body.dark-mode .contact-info h3 {
+            color: #0d6efd;
+        }
+        body.dark-mode .form-control, body.dark-mode .form-select {
+            background-color: #555;
+            color: #eee;
+            border-color: #666;
+        }
+        body.dark-mode .form-control::placeholder {
+            color: #bbb;
+        }
+        body.dark-mode .form-control:focus, body.dark-mode .form-select:focus {
+            border-color:#0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(77, 149, 207, 0.25);
+        }
+        body.dark-mode .social-links a {
+            color: #0d6efd;
+        }
+        body.dark-mode .social-links a:hover {
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">🏥Hospital</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="account.html">Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="contact.html">Contact Us</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                </ul>
+                <button class="btn btn-danger logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="form-container">
+        <form id="contactForm">
+            <h2>Contact Us</h2>
+            <div class="mb-3">
+                <label for="nameInput" class="form-label">Name</label>
+                <input type="text" class="form-control" id="nameInput" required>
+            </div>
+            <div class="mb-3">
+                <label for="emailInput" class="form-label">Email</label>
+                <input type="email" class="form-control" id="emailInput" required>
+            </div>
+            <div class="mb-3">
+                <label for="messageTextarea" class="form-label">Message</label>
+                <textarea class="form-control" id="messageTextarea" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Send</button>
+        </form>
+    </div>
+
+    <div class="contact-info">
+        <h3>Or reach us at:</h3>
+        <p>Email: contact@ourhospital.com</p>
+        <p>Phone: +20 100 000 0000</p>
+        <p>Address: Cairo, Egypt</p>
+
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+    </div>
+        <footer class="footer mt-auto py-4 bg-dark text-white">
+        <div class="text-center">
+            <p class="mb-0">&copy; 2025 Our Hospital. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+       
+        const body = document.body;
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            alert('Your message has been sent!');
+            this.reset(); 
+        });
+
+        function logout() {
+            localStorage.removeItem('loggedInUser'); 
+            localStorage.removeItem('cart'); 
+            localStorage.removeItem('pendingServices'); 
+            localStorage.removeItem('confirmedServices'); 
+            window.location.href = 'login.html'; 
+        }
+    </script>
+</body>
+</html>

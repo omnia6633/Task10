@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - Hospital</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <style>
+ 
+    body {
+      padding-top: 20px; 
+      background-color: #f0f2f5;
+      font-family: Arial, sans-serif;
+    }
+    .about-section {
+      padding: 60px 0;
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      margin-bottom: 40px;
+    }
+    .about-content {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .about-content h2 {
+      color: #0d6efd;
+      margin-bottom: 25px;
+      font-weight: 600;
+      text-align: center;
+    }
+    .about-content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+    .about-image {
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+    .mission-vision-section {
+      background-color: #e9ecef;
+      padding: 50px 0;
+      text-align: center;
+      border-radius: 10px;
+      margin-bottom: 40px;
+    }
+    .mission-vision-section h3 {
+      color: #0d6efd;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    .mission-vision-section p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto 30px auto;
+    }
+    .team-section {
+        padding: 50px 0;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        margin-bottom: 40px;
+    }
+    .team-section h2 {
+        color: #0d6efd;
+        margin-bottom: 40px;
+        font-weight: 600;
+    }
+    .team-member {
+        margin-bottom: 30px;
+    }
+    .team-member img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #0d6efd;
+        transition: transform 0.3s ease;
+    }
+    .team-member img:hover {
+        transform: scale(1.05);
+    }
+    .team-member h5 {
+        margin-top: 15px;
+        color: #333;
+        font-weight: 600;
+    }
+    .team-member p {
+        color: #666;
+        font-size: 0.95em;
+    }
+    .back-to-home-link {
+        display: block;
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        font-size: 1.2em;
+    }
+    .back-to-home-btn {
+        background-color: #007bff;
+        border-color: #007bff;
+        font-weight: bold;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        transition: background-color 0.3s ease;
+    }
+    .back-to-home-btn:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+
+    /* Dark mode styles */
+        body.dark-mode {
+            background-color: #333;
+            color: #eee;
+        }
+        body.dark-mode .navbar {
+            background-color: #555 !important;
+        }
+        body.dark-mode .navbar-brand, body.dark-mode .nav-link, body.dark-mode .logout-btn {
+            color: #eee !important;
+        }
+        body.dark-mode .form-container, body.dark-mode .contact-info {
+            background-color: #444;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.1);
+        }
+        body.dark-mode .form-container h2, body.dark-mode .contact-info h3 {
+            color: #0d6efd;
+        }
+        body.dark-mode .form-control, body.dark-mode .form-select {
+            background-color: #555;
+            color: #eee;
+            border-color: #666;
+        }
+        body.dark-mode .form-control::placeholder {
+            color: #bbb;
+        }
+        body.dark-mode .form-control:focus, body.dark-mode .form-select:focus {
+            border-color:#0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(156, 39, 176, 0.25);
+        }
+        body.dark-mode .social-links a {
+            color: #0d6efd;
+        }
+        body.dark-mode .social-links a:hover {
+            color: #0d6efd;
+        }
+  </style>
+</head>
+<body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">🏥Hospital</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="account.html">Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                </ul>
+                <button class="btn btn-danger logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+  <div class="container mt-4">
+    <section class="about-section">
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-4">
+          <img src="photos/11.jfif" class="img-fluid about-image" alt="Hospital Building">
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="about-content">
+            <h2>About Our Hospital</h2>
+            <p>Welcome to Hospital , a leading healthcare institution dedicated to providing exceptional medical services and compassionate care to our community since [Year of Establishment]. We are committed to fostering a healing environment where patient well-being is our top priority.</p>
+            <p>Our state-of-the-art facilities, combined with a team of highly skilled doctors, nurses, and support staff, ensure that every patient receives personalized and effective treatment. We believe in continuous improvement and embrace the latest medical advancements to deliver the best possible outcomes.</p>
+            <p>At [Your Hospital Name], we are more than just a hospital; we are a partner in your health journey, striving to make a positive impact on the lives of individuals and families we serve.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mission-vision-section">
+      <div class="container">
+        <h3>Our Mission</h3>
+        <p>To deliver comprehensive, high-quality, and compassionate healthcare services that meet the diverse needs of our patients, promoting health and wellness within the community.</p>
+
+        <h3>Our Vision</h3>
+        <p>To be the premier healthcare provider, recognized for excellence in patient care, medical innovation, and commitment to community well-being.</p>
+      </div>
+    </section>
+
+    <section class="team-section">
+      <div class="container">
+          <h2>Meet Our Dedicated Team</h2>
+          <div class="row justify-content-center">
+              <div class="col-md-3 col-sm-6 team-member">
+                  <img src="photos/7.jfif" alt="Dr. John">
+                  <h5>Dr. John Ayman</h5>
+                  <p>Chief of Surgery</p>
+              </div>
+              <div class="col-md-3 col-sm-6 team-member">
+                  <img src="photos/8.jpg" alt="Dr. Sara">
+                  <h5>Dr. Sara Hossam</h5>
+                  <p>Head of Pediatrics</p>
+              </div>
+              <div class="col-md-3 col-sm-6 team-member">
+                  <img src="photos/9.avif" alt="Nurse Sandy">
+                  <h5>Nurse. Sandy Kamal</h5>
+                  <p>Head Nurse</p>
+              </div>
+              <div class="col-md-3 col-sm-6 team-member">
+                  <img src="photos/10.jpeg" alt="Admin Ramy">
+                  <h5>Ramy Waheed</h5>
+                  <p>Hospital Administrator</p>
+              </div>
+          </div>
+      </div>
+    </section>
+    <footer class="footer mt-auto py-4 bg-dark text-white">
+        <div class="text-center">
+            <p class="mb-0">&copy; 2025 Our Hospital. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+   
+      const body = document.body;
+      if (localStorage.getItem('darkMode') === 'enabled') {
+          body.classList.add('dark-mode');
+      }
+  </script>
+</body>
+</html>

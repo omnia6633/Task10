@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hospital Dashboard</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/home-style.css"> <style>
+     
+      body {
+          padding-top: 70px;
+          background-color: #f0f2f5;
+      }
+      .navbar {
+          background-color: #0d6efd !important;
+      }
+      .navbar-brand, .nav-link {
+          color: #fff !important;
+          font-weight: bold;
+      }
+      .navbar-brand {
+          font-size: 1.5em;
+      }
+      .nav-link.active {
+          text-decoration: underline;
+      }
+      .dashboard-container {
+          background-color: #fff;
+          padding: 40px;
+          border-radius: 10px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          margin-top: 50px;
+          margin-bottom: 50px;
+      }
+      h1, h2 {
+          color: #0d6efd;
+          font-weight: bold;
+      }
+      .dashboard-card {
+          border-radius: 10px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+          transition: transform 0.2s ease-in-out;
+          height: 100%;
+      }
+      .dashboard-card:hover {
+          transform: translateY(-5px);
+      }
+      .dashboard-card .card-title {
+          color: #0d6efd;
+          font-weight: bold;
+      }
+      .dashboard-card .btn-primary {
+          background-color: #007bff;
+          border-color: #007bff;
+          border-radius: 8px;
+          font-weight: bold;
+      }
+      .dashboard-card .btn-primary:hover {
+          background-color: #0056b3;
+          border-color: #0056b3;
+      }
+      .image-card {
+          border-radius: 10px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+          height: 100%;
+      }
+      .image-card img {
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+          height: 200px;
+          object-fit: cover;
+      }
+      .image-card .card-title {
+          color: #0d6efd;
+          font-weight: bold;
+      }
+
+      
+      body.dark-mode {
+          background-color: #333;
+          color: #eee;
+      }
+      body.dark-mode .navbar {
+          background-color: #555 !important;
+      }
+      body.dark-mode .navbar-brand, body.dark-mode .nav-link {
+          color: #eee !important;
+      }
+      body.dark-mode .dashboard-container {
+          background-color: #444;
+          box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+      }
+      body.dark-mode h1, body.dark-mode h2 {
+          color: #0d6efd;
+      }
+      body.dark-mode .dashboard-card, body.dark-mode .image-card {
+          background-color: #555;
+          box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+      }
+      body.dark-mode .dashboard-card .card-title, body.dark-mode .image-card .card-title {
+          color: #0d6efd;
+      }
+      body.dark-mode .card-text {
+          color: #ccc;
+      }
+      /* Footer Styles */
+.footer {
+    background-color: #343a40; /* Dark background */
+    color: #f8f9fa; /* Light text */
+    /* Make sure footer sticks to bottom when content is short */
+    margin-top: auto;
+}
+.footer h5 {
+    color: #6a1b9a; /* Purple heading for footer sections */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.footer ul {
+    padding-left: 0;
+    list-style: none;
+}
+.footer ul li {
+    margin-bottom: 8px;
+}
+.footer ul li a {
+    color: #f8f9fa; /* Light text for links */
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.footer ul li a:hover {
+    color: #ced4da; /* Slightly darker on hover */
+}
+.footer ul li i {
+    margin-right: 8px;
+    color: #6a1b9a; /* Purple icon */
+}
+.footer hr {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Dark mode footer */
+body.dark-mode .footer {
+    background-color: #222;
+    color: #ddd;
+}
+body.dark-mode .footer h5 {
+    color: #0d6efd; /* Dark mode purple for headings */
+}
+body.dark-mode .footer ul li a {
+    color: #ddd;
+}
+body.dark-mode .footer ul li a:hover {
+    color: #aaa;
+}
+body.dark-mode .footer ul li i {
+    color: #0d6efd; /* Dark mode purple for icons */
+}
+body.dark-mode .footer hr {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Ensure content pushes footer down */
+html, body {
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+}
+.content-wrapper { /* Add this class to your main content div */
+    flex: 1;
+}
+      
+      
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">🏥 Hospital</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html">Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="account.html">Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About Us</a>
+          </li>
+        </ul>
+        <a href="login.html" class="btn btn-outline-light">Logout</a> </div>
+    </div>
+  </nav>
+
+  <div class="container dashboard-container mt-4">
+    <h1 class="text-center mb-4"> Welcome to Our Hospital</h1>
+    <p class="text-center lead">Discover our world-class medical services and dedicated care.</p>
+
+    <div class="row text-center cards-section">
+      <div class="col-md-4 mb-4">
+        <div class="card dashboard-card">
+          <div class="card-body">
+            <h5 class="card-title">Expert Doctors</h5>
+            <p class="card-text">Meet our highly qualified and experienced medical professionals.</p>
+            <a href="#" class="btn btn-primary">View Doctors</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card dashboard-card">
+          <div class="card-body">
+            <h5 class="card-title">Patient Care</h5>
+            <p class="card-text">Our patient-centric approach ensures your comfort and recovery.</p>
+            <a href="#" class="btn btn-primary">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card dashboard-card">
+          <div class="card-body">
+            <h5 class="card-title">Advanced Facilities</h5>
+            <p class="card-text">Equipped with the latest technology for accurate diagnostics and treatment.</p>
+            <a href="#" class="btn btn-primary">Explore Facilities</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5">
+
+    <section class="photo-gallery">
+      <h2 class="text-center mb-4">Hospital Photo Gallery</h2>
+      <div class="row" id="image-cards-container">
+        <div class="col-md-4 mb-4">
+          <div class="card image-card">
+            <img src="https://lebnow.com/wp-content/uploads/2022/12/Doc-P-1020306-638067123231315224-1024x496.jpg" class="card-img-top" alt="Emergency Department">
+            <div class="card-body">
+              <h5 class="card-title">Emergency Department</h5>
+              <p class="card-text">A specialized team providing rapid care.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card image-card">
+            <img src="https://cdn.arabsstock.com/uploads/images/141376/surgical-operating-room-three-dimensional-design-thumbnail-141376.webp" class="card-img-top" alt="Operating Rooms">
+            <div class="card-body">
+              <h5 class="card-title">Operating Rooms</h5>
+              <p class="card-text">State-of-the-art equipment to ensure patient safety.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card image-card">
+            <img src="https://www.okaz.com.sa/uploads/images/2017/12/25/644809.JPG" class="card-img-top" alt="Hospital Pharmacy">
+            <div class="card-body">
+              <h5 class="card-title">Hospital Pharmacy</h5>
+              <p class="card-text">Provides all medications and medical supplies.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card image-card">
+            <img src="https://globalcarehospital.com/wp-content/uploads/2020/05/residence-rooms-3.jpg" class="card-img-top" alt="Patient Rooms">
+            <div class="card-body">
+              <h5 class="card-title">Patient Rooms</h5>
+              <p class="card-text">Comfortable and fully equipped rooms for patient comfort.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card image-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/LabMachines.jpg/250px-LabMachines.jpg" class="card-img-top" alt="Laboratory">
+            <div class="card-body">
+              <h5 class="card-title">Laboratory</h5>
+              <p class="card-text">Accurate medical tests in the shortest time.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card image-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4eQQO3e9_1JylYkeso-NzQ3Lr7FiNU1VM2A&s" class="card-img-top" alt="Reception Area">
+            <div class="card-body">
+              <h5 class="card-title">Reception Area</h5>
+              <p class="card-text">Fast and welcoming service for all visitors.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer class="footer mt-auto py-4 bg-dark text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <h5>About Us</h5>
+                <p>Leading healthcare institution committed to providing exceptional medical services and compassionate care.</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="home.html" class="text-white text-decoration-none">Home</a></li>
+                    <li><a href="services.html" class="text-white text-decoration-none">Services</a></li>
+                    <li><a href="cart.html" class="text-white text-decoration-none">Cart</a></li>
+                    <li><a href="account.html" class="text-white text-decoration-none">Account</a></li>
+                    <li><a href="contact.html" class="text-white text-decoration-none">Contact Us</a></li>
+                    <li><a href="about.html" class="text-white text-decoration-none">About Us</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5>Contact Info</h5>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-geo-alt-fill"></i> Cairo, Egypt</li>
+                    <li><i class="bi bi-telephone-fill"></i> +20 100 000 0000</li>
+                    <li><i class="bi bi-envelope-fill"></i> info@hospital.com</li>
+                </ul>
+            </div>
+        </div>
+        <hr class="bg-light">
+        <div class="text-center">
+            <p class="mb-0">&copy; 2025 Our Hospital. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+      
+      const body = document.body;
+      if (localStorage.getItem('darkMode') === 'enabled') {
+          body.classList.add('dark-mode');
+      }
+  </script>
+</body>
+</html>
